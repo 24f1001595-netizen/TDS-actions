@@ -1,0 +1,31 @@
+name: IITM Verification Action
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Your mandatory assignment step
+      - name: 24f1001595@ds.study.iitm.ac.in
+        run: echo "Action successfully run for 24f1001595@ds.study.iitm.ac.in"
+
+      # Step 1: Install Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      # Step 2: Install Black (the formatting tool)
+      - name: Install formatter
+        run: pip install black
+
+      # Step 3: Check code formatting
+      - name: Check code formatting errors
+        run: black --check .
